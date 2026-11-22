@@ -38,7 +38,7 @@ Private keys, CSRs and keystores are generated locally and excluded by `.gitigno
 
 ## Requirements
 
-* Linux (tested on Ubuntu 24.04) or macOS / WSL with OpenSSL 3.x
+* Linux (tested on macOS 26 with Homebrew and on Ubuntu 24.04) or macOS / WSL with OpenSSL 3.x
 * Java 17+ (for Tomcat and `keytool`)
 * Apache Tomcat 10.1 (`sudo apt install tomcat10`, or the tarball from tomcat.apache.org)
 

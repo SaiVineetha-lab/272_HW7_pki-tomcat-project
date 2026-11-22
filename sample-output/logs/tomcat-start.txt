@@ -1,6 +1,0 @@
-21-Nov-2026 15:33:59.526 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/10.1.55 (Ubuntu)
-21-Nov-2026 15:33:59.537 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 10.1.55.0
-21-Nov-2026 15:34:00.096 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["https-openssl-nio-8443"]
-21-Nov-2026 15:34:00.274 INFO [main] org.apache.tomcat.util.net.AbstractEndpoint.logCertificate Connector [https-openssl-nio-8443], TLS virtual host [_default_], certificate type [RSA] configured from keystore [conf/simple.org.p12] using alias [tomcat] with trust store [null]
-21-Nov-2026 15:34:01.200 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["https-openssl-nio-8443"]
-21-Nov-2026 15:34:01.202 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [917] milliseconds
