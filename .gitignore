@@ -1,0 +1,7 @@
+# Generated PKI material - private keys and keystores must never be committed
+ca/
+crl/
+certs/
+*.key
+*.p12
+*.csr

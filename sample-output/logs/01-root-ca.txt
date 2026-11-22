@@ -1,0 +1,43 @@
+$ ./scripts/01-root-ca.sh
+
+==> 1.1 Create directories
+
+==> 1.2 Create database
+
+==> 1.3 Create CA request (private key + CSR)
+
+==> 1.4 Create CA certificate (self-signed, 10 years)
+Using configuration from etc/root-ca.conf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 21 23:33:49 2026 GMT
+            Not After : Nov 20 23:33:49 2036 GMT
+        Subject:
+            domainComponent           = org
+            domainComponent           = simple
+            organizationName          = Simple Inc
+            organizationalUnitName    = Simple Root CA
+            commonName                = Simple Root CA
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Certificate Sign, CRL Sign
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Subject Key Identifier: 
+                97:07:77:19:52:F2:6F:53:35:2D:F6:82:61:62:CF:85:BA:68:9A:D2
+            X509v3 Authority Key Identifier: 
+                97:07:77:19:52:F2:6F:53:35:2D:F6:82:61:62:CF:85:BA:68:9A:D2
+Certificate is to be certified until Nov 20 23:33:49 2036 GMT (3652 days)
+
+Write out database with 1 new entries
+Database updated
+
+==> 1.5 Create initial CRL
+Using configuration from etc/root-ca.conf
+subject=DC = org, DC = simple, O = Simple Inc, OU = Simple Root CA, CN = Simple Root CA
+issuer=DC = org, DC = simple, O = Simple Inc, OU = Simple Root CA, CN = Simple Root CA
+notBefore=Nov 21 23:33:49 2026 GMT
+notAfter=Nov 20 23:33:49 2036 GMT

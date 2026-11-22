@@ -1,0 +1,41 @@
+$ ./scripts/03-tls-cert.sh
+
+==> 3.1 Create TLS server request (SAN=DNS:localhost,DNS:www.simple.org,IP:127.0.0.1)
+
+==> 3.2 Create TLS server certificate (signed by Signing CA, 2 years)
+Using configuration from etc/signing-ca.conf
+Check that the request matches the signature
+Signature ok
+Certificate Details:
+        Serial Number: 1 (0x1)
+        Validity
+            Not Before: Nov 21 23:33:52 2026 GMT
+            Not After : Nov 20 23:33:52 2028 GMT
+        Subject:
+            domainComponent           = org
+            domainComponent           = simple
+            organizationName          = Simple Inc
+            organizationalUnitName    = Simple Web Server
+            commonName                = www.simple.org
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature, Key Encipherment
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication, TLS Web Client Authentication
+            X509v3 Subject Key Identifier: 
+                35:FE:9A:17:BD:8B:35:14:03:35:37:AE:E1:73:22:3A:38:0C:65:90
+            X509v3 Authority Key Identifier: 
+                97:36:A7:71:F3:C5:A0:96:41:88:8C:AF:4B:77:83:28:D3:10:D3:85
+            X509v3 Subject Alternative Name: 
+                DNS:localhost, DNS:www.simple.org, IP Address:127.0.0.1
+Certificate is to be certified until Nov 20 23:33:52 2028 GMT (730 days)
+
+Write out database with 1 new entries
+Database updated
+
+==> 3.3 Create PEM bundles
+
+==> 3.4 Verify the chain: TLS cert -> Signing CA -> Root CA
+certs/simple.org.crt: OK

@@ -1,0 +1,8 @@
+$ sudo ./scripts/05-configure-tomcat.sh
+
+==> 5.1 Copy keystore into /etc/tomcat10
+
+==> 5.2 Install server.xml with HTTPS connector on port 8443
+
+==> 5.3 Deploy demo page
+Done. Restart Tomcat, then browse to https://localhost:8443/
