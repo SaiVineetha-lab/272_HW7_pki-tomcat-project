@@ -85,3 +85,26 @@ For an unattended lab run the scripts use default passwords set in
 `scripts/00-common.sh` (`CA_PASS`, `KEYSTORE_PASS`). Override them with environment
 variables. In a real PKI the Root CA key would be kept offline and protected by a
 strong passphrase.
+
+## Troubleshooting
+
+| Problem | Likely cause | Fix |
+|---------|--------------|-----|
+| `openssl version` prints `LibreSSL` on macOS | The built-in macOS `openssl` is LibreSSL, not OpenSSL 3 | `brew install openssl@3` and put `$(brew --prefix openssl@3)/bin` first in `PATH` |
+| `unable to load CA private key` / `bad decrypt` | `CA_PASS` is different from the run that created the CA keys | Use the same `CA_PASS`, or run `./scripts/clean.sh` and rebuild with `./scripts/run-all.sh` |
+| `openssl verify` does not print `OK` | Signing CA or Root CA was rebuilt after the TLS cert was issued | Run `./scripts/clean.sh`, then `./scripts/run-all.sh` so the whole chain is issued again |
+| Tomcat does not listen on 8443, log says `keystore password was incorrect` | `KEYSTORE_PASS` used in step 4 and step 5 do not match | Export the same `KEYSTORE_PASS` and rerun steps 4 and 5 |
+| `Address already in use` for 8443 or 8080 | Another Tomcat or app already holds the port | `lsof -i :8443` to find it, stop it, then restart Tomcat |
+| Tomcat log shows `Permission denied` on `simple.org.p12` (Ubuntu) | The `tomcat` user cannot read the keystore | `sudo chgrp tomcat /etc/tomcat10/simple.org.p12 && sudo chmod 640 /etc/tomcat10/simple.org.p12` |
+| Browser shows `NET::ERR_CERT_COMMON_NAME_INVALID` | The host name you typed is not in the certificate's SAN | Use `localhost`, `127.0.0.1` or `www.simple.org`, or set `SAN=...` and rerun steps 3, 4 and 5 |
+| Chrome still warns after trusting the Root CA | Chrome caches certificate state | Quit Chrome fully (Cmd+Q on macOS) and open it again |
+| Firefox still warns after trusting the Root CA | Firefox uses its own certificate store | Import `ca/root-ca.crt` under Settings → Privacy & Security → Certificates → Authorities |
+| `curl: (60) self signed certificate in certificate chain` | curl does not trust our Root CA | Expected without `--cacert ca/root-ca.crt`; step 6.3 tests exactly this |
+
+To check what Tomcat is actually serving, run:
+
+```bash
+echo | openssl s_client -connect localhost:8443 -CAfile ca/root-ca.crt -showcerts
+```
+
+You should see three certificates and `Verify return code: 0 (ok)`.
