@@ -60,6 +60,25 @@ sudo systemctl restart tomcat10
 ./scripts/06-verify.sh
 ```
 
+## Quick start (macOS with Homebrew)
+
+Install OpenSSL 3 and Tomcat with Homebrew, then point the project scripts at the Homebrew Tomcat directories:
+
+```bash
+brew install openssl@3 tomcat
+export PATH="$(brew --prefix openssl@3)/bin:$PATH"
+export TOMCAT_HOME="$(brew --prefix tomcat)/libexec"
+export TOMCAT_CONF="$TOMCAT_HOME/conf"
+export TOMCAT_WEBAPPS="$TOMCAT_HOME/webapps"
+
+./scripts/run-all.sh
+./scripts/05-configure-tomcat.sh
+"$TOMCAT_HOME/bin/catalina.sh" start
+./scripts/06-verify.sh
+```
+
+Open <https://localhost:8443/> after importing `ca/root-ca.crt` into macOS Keychain Access and setting it to **Always Trust**. Stop Tomcat when finished with `"$TOMCAT_HOME/bin/catalina.sh" stop`.
+
 For a Tomcat tarball install, set the paths first:
 
 ```bash
